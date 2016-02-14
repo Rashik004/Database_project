@@ -1,0 +1,17 @@
+name = raw_input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+count=dict()
+for line in handle:
+    if not line.startswith("From "):
+        continue
+    t=line.split()
+    count[t[1]]=count.get(t[1],0)+1
+maxVal=None
+maxName=None
+for word in count:
+    if maxVal==None or count[word]>maxVal:
+        maxVal=count[word]
+        maxName=word
+
+print maxName, maxVal
